@@ -59,7 +59,15 @@ pub mod __impl {
 /// See the [crate docs](crate) for details.
 pub use recursive_proc_macro_impl::recursive;
 
+// The stack in debugging mode is 10 * than in release
+#[cfg(debug_assertions)]
+static MINIMUM_STACK_SIZE: AtomicUsize = AtomicUsize::new(128 * 1024 * 10);
+#[cfg(debug_assertions)]
+static STACK_ALLOC_SIZE: AtomicUsize = AtomicUsize::new(2 * 1024 * 1024 * 10);
+
+#[cfg(not(debug_assertions))]
 static MINIMUM_STACK_SIZE: AtomicUsize = AtomicUsize::new(128 * 1024);
+#[cfg(not(debug_assertions))]
 static STACK_ALLOC_SIZE: AtomicUsize = AtomicUsize::new(2 * 1024 * 1024);
 
 /// This sets the minimum stack size that [`recursive`] requires.
