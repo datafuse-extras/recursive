@@ -66,7 +66,7 @@ static MINIMUM_STACK_SIZE: AtomicUsize = AtomicUsize::new(128 * 1024 * 10);
 static STACK_ALLOC_SIZE: AtomicUsize = AtomicUsize::new(2 * 1024 * 1024 * 10);
 
 #[cfg(not(debug_assertions))]
-static MINIMUM_STACK_SIZE: AtomicUsize = AtomicUsize::new(128 * 1024);
+static MINIMUM_STACK_SIZE: AtomicUsize = AtomicUsize::new(256 * 1024);
 #[cfg(not(debug_assertions))]
 static STACK_ALLOC_SIZE: AtomicUsize = AtomicUsize::new(2 * 1024 * 1024);
 
